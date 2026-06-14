@@ -2,7 +2,7 @@
 const nextConfig = {
   async rewrites() {
     return [
-      { source: '/api/rpc/:path*', destination: 'http://127.0.0.1:8899/:path*' },
+      { source: '/api/rpc/:path*', destination: 'https://rpc.eddachain.com/:path*' },
     ];
   },
 };

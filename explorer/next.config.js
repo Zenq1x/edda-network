@@ -4,7 +4,7 @@ const nextConfig = {
     return [
       {
         source: '/api/rpc/:path*',
-        destination: 'http://127.0.0.1:8899/:path*',
+        destination: 'https://rpc.eddachain.com/:path*',
       },
     ];
   },
