@@ -28,10 +28,14 @@ impl LeaderSchedule {
         const SLOTS_PER_EPOCH_MINI: u64 = 1_000;
         let mut schedule: Vec<Pubkey> = Vec::with_capacity(SLOTS_PER_EPOCH_MINI as usize);
 
+        // Cap: no single validator can hold more than 33% of slots
+        let max_slots = (SLOTS_PER_EPOCH_MINI / 3).max(1) as usize;
+
         for v in validators {
             let slots = ((v.stake as u128 * SLOTS_PER_EPOCH_MINI as u128)
                 / total_stake as u128)
                 .max(1) as usize;
+            let slots = slots.min(max_slots);
             for _ in 0..slots {
                 schedule.push(v.identity);
             }
