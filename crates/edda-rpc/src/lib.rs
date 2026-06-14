@@ -78,7 +78,6 @@ pub trait RpcState: Send + Sync + 'static {
     fn get_total_supply(&self) -> u64;
     fn get_total_burned(&self) -> u64;
     fn submit_transaction(&self, tx_bytes: Vec<u8>) -> Result<String, String>;
-    fn faucet(&self, pubkey_hex: &str) -> Result<u64, String>;
     fn get_block(&self, slot: u64) -> Option<BlockInfo>;
     fn get_recent_blocks(&self, limit: usize) -> Vec<BlockInfo>;
     fn get_transaction_history(&self, pubkey_hex: &str, limit: usize) -> Vec<TxHistoryEntry>;
@@ -169,14 +168,6 @@ async fn handle_rpc<S: RpcState>(
                     Err(msg) => RpcResponse::err(id, -32000, msg),
                 },
                 Err(_) => RpcResponse::err(id, -32602, "invalid base64"),
-            }
-        }
-
-        "faucet" => {
-            let pk = req.params.first().and_then(|v| v.as_str()).unwrap_or("");
-            match state.faucet(pk) {
-                Ok(l)    => RpcResponse::ok(id, json!({ "lamports": l })),
-                Err(msg) => RpcResponse::err(id, -32000, msg),
             }
         }
 

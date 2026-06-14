@@ -412,7 +412,6 @@ struct NodeState {
     current_slot:       Mutex<u64>,
     validator:          Keypair,
     network_tx:         tokio::sync::mpsc::Sender<OutboundMessage>,
-    faucet_cooldowns:   Mutex<HashMap<String, Instant>>,
     recent_blockhashes: Mutex<VecDeque<Hash>>,
     seen_sigs:          Mutex<HashSet<String>>,
     wasm:               WasmRuntime,
@@ -498,21 +497,6 @@ impl RpcState for NodeState {
             decimals: m.decimals, total_supply: m.total_supply, max_supply: m.max_supply,
             mint_authority: m.mint_authority.to_string(),
         }).collect()
-    }
-
-    fn faucet(&self, pubkey_hex: &str) -> Result<u64, String> {
-        const DRIP: u64 = 10 * LAMPORTS_PER_EDDA;
-        let mut cd = self.faucet_cooldowns.try_lock().map_err(|_| "faucet busy")?;
-        if let Some(&last) = cd.get(pubkey_hex) {
-            let s = last.elapsed().as_secs();
-            if s < 60 { return Err(format!("cooldown: wait {}s", 60 - s)); }
-        }
-        let to = parse_pubkey(pubkey_hex)?;
-        self.ledger.try_write().map_err(|_| "ledger busy")?
-            .transfer(self.validator.pubkey(), to, DRIP, self.validator.pubkey()).map_err(|e| e.to_string())?;
-        cd.insert(pubkey_hex.to_string(), Instant::now());
-        println!("[Faucet] 10 EDDA → {}...", &pubkey_hex[..16]);
-        Ok(DRIP)
     }
 
     fn submit_transaction(&self, tx_bytes: Vec<u8>) -> Result<String, String> {
@@ -799,8 +783,13 @@ async fn main() {
         None => {
             println!("[Ledger] Genesis init");
             let mut l = Ledger::new(genesis_hash);
-            l.mint(validator.pubkey(), 10_000 * LAMPORTS_PER_EDDA);
-            println!("[Ledger] Validator: {} EDDA", l.balance(&validator.pubkey()) / LAMPORTS_PER_EDDA);
+            // Genesis allocation: 100M EDDA (20% of max supply) to founder wallet
+            let founder_hex = "458eca8bfc394c5155a001be1fd0c54b884a44bd83c4e62395296350d08f4291";
+            if let Ok(founder) = parse_pubkey(founder_hex) {
+                l.mint(founder, 100_000_000 * LAMPORTS_PER_EDDA);
+                println!("[Ledger] Genesis: 100,000,000 EDDA → founder");
+            }
+            println!("[Ledger] Total supply: {} EDDA", l.total_supply / LAMPORTS_PER_EDDA);
             (l, 0)
         }
     };
@@ -848,7 +837,6 @@ async fn main() {
         stake_pool, leader_schedule,
         current_slot:       Mutex::new(resume_slot),
         validator, network_tx,
-        faucet_cooldowns:   Mutex::new(HashMap::new()),
         recent_blockhashes: Mutex::new(init_window),
         seen_sigs:          Mutex::new(HashSet::new()),
         wasm:               WasmRuntime::new().expect("wasmtime init failed"),

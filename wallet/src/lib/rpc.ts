@@ -43,10 +43,6 @@ export async function sendTransaction(base64Tx: string): Promise<string> {
   return r.signature;
 }
 
-export async function requestFaucet(pubkeyHex: string): Promise<bigint> {
-  const r = await call<{ lamports: number }>('faucet', [pubkeyHex]);
-  return BigInt(r.lamports);
-}
 
 export async function getTxHistory(pubkeyHex: string, limit = 50): Promise<TxHistoryEntry[]> {
   return call<TxHistoryEntry[]>('getTransactionHistory', [pubkeyHex, limit]);

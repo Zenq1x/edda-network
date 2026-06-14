@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { generateKeypair, pubkeyFromPrivate, buildTransferTx } from '@/lib/crypto';
 import {
   getBalance, getRecentBlockhash, sendTransaction, isNodeAlive,
-  getBlockHeight, requestFaucet, getTxHistory, listTokens, getTokenBalance,
+  getBlockHeight, getTxHistory, listTokens, getTokenBalance,
   TxHistoryEntry, TokenInfo,
 } from '@/lib/rpc';
 
@@ -36,9 +36,6 @@ export default function Wallet() {
   const [tokenAmount,  setTokenAmount]  = useState('');
   const [tokenSending, setTokenSending] = useState(false);
   const [tokenSendMsg, setTokenSendMsg] = useState<{ type: 'ok'|'err'; text: string } | null>(null);
-
-  const [fauceting, setFauceting] = useState(false);
-  const [faucetMsg, setFaucetMsg] = useState<{ type: 'ok'|'err'; text: string } | null>(null);
 
   const [importKey, setImportKey] = useState('');
   const [importErr, setImportErr] = useState('');
@@ -139,18 +136,6 @@ export default function Wallet() {
     } finally { setTokenSending(false); }
   }
 
-  async function doFaucet() {
-    if (!wallet) return;
-    setFauceting(true); setFaucetMsg(null);
-    try {
-      await requestFaucet(wallet.publicKey);
-      setFaucetMsg({ type: 'ok', text: '+10 EDDA received' });
-      setTimeout(poll, 800);
-    } catch (e: unknown) {
-      setFaucetMsg({ type: 'err', text: e instanceof Error ? e.message : 'Failed' });
-    } finally { setFauceting(false); }
-  }
-
   function deleteWallet() {
     if (!confirm('Delete wallet? Back up your private key first.')) return;
     localStorage.removeItem(STORAGE_KEY);
@@ -215,25 +200,6 @@ export default function Wallet() {
         <div className="addr-row">
           <span className="addr-text">{wallet.publicKey}</span>
           <button className="copy-btn" onClick={copyAddress}>{copied ? '✓' : 'Copy'}</button>
-        </div>
-
-        {/* Faucet */}
-        <div className="faucet-bar">
-          <div>
-            <div className="faucet-bar-label">Test EDDA</div>
-            <div className="faucet-bar-sub">10 EDDA · 60s cooldown</div>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            {faucetMsg && (
-              <span style={{ fontSize: 12, color: faucetMsg.type === 'ok' ? 'var(--green)' : 'var(--red)' }}>
-                {faucetMsg.text}
-              </span>
-            )}
-            <button className="btn btn-secondary btn-sm"
-              onClick={doFaucet} disabled={fauceting || !online}>
-              {fauceting ? '…' : '+ Get'}
-            </button>
-          </div>
         </div>
 
         {/* Tabs */}
