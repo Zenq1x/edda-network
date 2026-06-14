@@ -1,0 +1,15 @@
+[package]
+name    = "edda-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[dependencies]
+edda-core = { path = "../edda-core" }
+wasmtime  = { workspace = true }
+anyhow    = { workspace = true }
+
+[dev-dependencies]
+wat = "1"

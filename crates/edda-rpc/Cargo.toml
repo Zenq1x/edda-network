@@ -1,0 +1,15 @@
+[package]
+name    = "edda-rpc"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[dependencies]
+edda-core = { path = "../edda-core" }
+axum       = { workspace = true }
+serde_json = { workspace = true }
+serde      = { workspace = true }
+tower-http = { workspace = true }
+tokio      = { workspace = true }

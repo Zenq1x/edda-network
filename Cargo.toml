@@ -1,0 +1,26 @@
+[workspace]
+members = [
+    "crates/edda-core",
+    "crates/edda-poh",
+    "crates/edda-network",
+    "crates/edda-consensus",
+    "crates/edda-wasm",
+    "crates/edda-rpc",
+    "node",
+]
+resolver = "2"
+
+[workspace.dependencies]
+sha2      = "0.10"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+serde     = { version = "1", features = ["derive"] }
+bincode   = "1"
+tokio     = { version = "1", features = ["full"] }
+hex       = "0.4"
+rand      = "0.8"
+futures   = "0.3"
+anyhow    = "1"
+wasmtime   = { version = "25", features = ["cranelift"] }
+axum       = "0.7"
+serde_json = "1"
+tower-http = { version = "0.5", features = ["cors"] }

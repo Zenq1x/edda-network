@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edda Network — Fast. Cheap. Permanent.</title>
+  <meta name="description" content="Edda is a high-performance blockchain with 65,000 TPS, 400ms finality, and near-zero fees." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">
+        Edda
+      </div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#network">Network</a>
+        <a href="#start">Get Started</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://wallet.eddachain.com" class="btn btn-ghost">Wallet</a>
+        <a href="https://explorer.eddachain.com" class="btn btn-outline-white">Explorer →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO: Full SVG composition -->
+  <section class="hero-canvas">
+    <div class="hero-svg-wrap">
+      <img src="hero.svg" alt="Edda Network" class="hero-svg" />
+    </div>
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Testnet Live
+        </div>
+        <h1>The blockchain built<br/>for what comes next.</h1>
+        <p class="hero-sub">65,000 transactions per second. 400ms finality.<br/>Fees so low they're almost free.</p>
+        <div class="hero-actions">
+          <a href="https://explorer.eddachain.com" class="btn btn-white btn-lg">View Explorer</a>
+          <a href="#start" class="btn btn-ghost-white btn-lg">Get Test EDDA</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span class="tick"><span class="tick-val">65,000</span><span class="tick-label">TPS</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val">400ms</span><span class="tick-label">Block Time</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val green">~$0</span><span class="tick-label">Fee</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val">500M</span><span class="tick-label">Max Supply</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val">50%</span><span class="tick-label">Burned</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val">10 EDDA</span><span class="tick-label">Block Reward</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val">Ed25519</span><span class="tick-label">Signatures</span></span>
+      <span class="tick-sep">·</span>
+      <span class="tick"><span class="tick-val">WASM</span><span class="tick-label">Contracts</span></span>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="eyebrow">Why Edda</div>
+        <h2>Built different.<br/>By design.</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card feature-card--large">
+          <div class="feature-tag">Core Protocol</div>
+          <h3>Proof of History</h3>
+          <p>Cryptographic timestamps embedded in every block. Validators agree on transaction order without gossip rounds — enabling true 65,000 TPS without sacrificing decentralization.</p>
+          <div class="feature-stat">
+            <span class="feature-stat-num">65,000</span>
+            <span class="feature-stat-label">TPS</span>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-tag">Consensus</div>
+          <h3>Tower BFT</h3>
+          <p>Byzantine fault-tolerant finality in under 400ms. Transactions are irreversible before most users finish blinking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-tag">Smart Contracts</div>
+          <h3>WebAssembly</h3>
+          <p>Deploy contracts in any language that compiles to WASM. Fuel-based gas metering keeps execution safe and predictable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-tag">Economics</div>
+          <h3>Hard Cap + Burn</h3>
+          <p>500M EDDA maximum. 50% of every fee is destroyed permanently. The network becomes more scarce as it grows.</p>
+          <div class="feature-mono">MAX_SUPPLY = 500_000_000</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-tag">Networking</div>
+          <h3>libp2p P2P</h3>
+          <p>Gossipsub + Kademlia DHT + mDNS autodiscovery. Nodes find each other and sync automatically with no configuration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NETWORK STATS -->
+  <section class="section section--dark" id="network">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="eyebrow">Network</div>
+        <h2>Numbers that matter.</h2>
+      </div>
+      <div class="network-grid">
+        <div class="network-stat">
+          <div class="network-num">65,000</div>
+          <div class="network-label">Transactions / second</div>
+          <div class="network-bar"><div class="network-bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="network-stat">
+          <div class="network-num">400<span style="font-size:50%">ms</span></div>
+          <div class="network-label">Block finality</div>
+          <div class="network-bar"><div class="network-bar-fill" style="width:2%"></div></div>
+        </div>
+        <div class="network-stat">
+          <div class="network-num green">~$0</div>
+          <div class="network-label">Average fee</div>
+          <div class="network-bar"><div class="network-bar-fill green" style="width:0.5%"></div></div>
+        </div>
+        <div class="network-stat">
+          <div class="network-num">500M</div>
+          <div class="network-label">Hard cap EDDA</div>
+          <div class="network-bar"><div class="network-bar-fill" style="width:60%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="eyebrow">Comparison</div>
+        <h2>How Edda stacks up.</h2>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th class="col-edda">Edda</th>
+              <th>Bitcoin</th>
+              <th>Ethereum</th>
+              <th>Solana</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">TPS</td>
+              <td class="col-edda bold">65,000</td>
+              <td>7</td><td>15</td><td>65,000</td>
+            </tr>
+            <tr>
+              <td class="row-label">Block time</td>
+              <td class="col-edda bold">400ms</td>
+              <td>10 min</td><td>12 sec</td><td>400ms</td>
+            </tr>
+            <tr>
+              <td class="row-label">Avg fee</td>
+              <td class="col-edda bold green">~$0</td>
+              <td>$2–20</td><td>$1–50</td><td>~$0</td>
+            </tr>
+            <tr>
+              <td class="row-label">Max supply</td>
+              <td class="col-edda bold">500M</td>
+              <td>21M</td><td>No cap</td><td>No cap</td>
+            </tr>
+            <tr>
+              <td class="row-label">Contracts</td>
+              <td class="col-edda bold">WASM</td>
+              <td>Limited</td><td>EVM</td><td>eBPF</td>
+            </tr>
+            <tr>
+              <td class="row-label">Fee model</td>
+              <td class="col-edda bold">50% burn + 50% validator</td>
+              <td>To miner</td><td>Burn + tip</td><td>50% burn</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENOMICS -->
+  <section class="section section--border">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="eyebrow">Tokenomics</div>
+        <h2>Designed to hold value.</h2>
+      </div>
+      <div class="token-grid">
+        <div class="token-card">
+          <div class="token-num">500,000,000</div>
+          <div class="token-name">Hard Cap</div>
+          <div class="token-desc">EDDA will ever exist. No exceptions. No inflation.</div>
+        </div>
+        <div class="token-card">
+          <div class="token-num">10 EDDA</div>
+          <div class="token-name">Block Reward</div>
+          <div class="token-desc">Earned by the validator that produces each block.</div>
+        </div>
+        <div class="token-card">
+          <div class="token-num green">50%</div>
+          <div class="token-name">Fee Burned</div>
+          <div class="token-desc">Half of every fee is permanently removed from supply.</div>
+        </div>
+        <div class="token-card">
+          <div class="token-num">0.000005</div>
+          <div class="token-name">Base Fee (EDDA)</div>
+          <div class="token-desc">Near-zero cost per transaction on the network.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET STARTED -->
+  <section class="section" id="start">
+    <div class="section-inner">
+      <div class="section-head">
+        <div class="eyebrow">Get Started</div>
+        <h2>Try it in 60 seconds.</h2>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4>Open the Wallet</h4>
+          <p>Go to <a href="https://wallet.eddachain.com">wallet.eddachain.com</a> and create a new wallet. Your keys stay in your browser — nothing is stored remotely.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4>Get test EDDA</h4>
+          <p>Hit the faucet button to receive 10 free EDDA. Refreshes every 60 seconds so you can keep testing.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4>Send a transaction</h4>
+          <p>Paste any address, enter an amount, hit send. Watch it confirm on-chain in under 400ms.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h4>Explore the chain</h4>
+          <p>Open <a href="https://explorer.eddachain.com">explorer.eddachain.com</a> to see blocks, transactions, and accounts live.</p>
+        </div>
+      </div>
+      <div class="start-cta">
+        <a href="https://wallet.eddachain.com" class="btn btn-white btn-xl">Launch Wallet →</a>
+        <a href="https://explorer.eddachain.com" class="btn btn-ghost-white btn-xl">Open Explorer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo">
+          Edda Network
+        </div>
+        <div class="footer-nav">
+          <div class="footer-col">
+            <div class="footer-col-head">Network</div>
+            <a href="https://explorer.eddachain.com">Explorer</a>
+            <a href="https://wallet.eddachain.com">Wallet</a>
+            <a href="https://rpc.eddachain.com">RPC</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-head">Developers</div>
+            <a href="#">Documentation</a>
+            <a href="#">GitHub</a>
+            <a href="#">RPC Docs</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-head">Community</div>
+            <a href="#">Twitter / X</a>
+            <a href="#">Discord</a>
+            <a href="#">Telegram</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Edda Network</div>
+        <div class="footer-mono">eddachain.com · Testnet</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

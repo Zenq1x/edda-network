@@ -1,0 +1,21 @@
+[package]
+name    = "edda-node"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "edda-node"
+path = "src/main.rs"
+
+[dependencies]
+edda-core      = { path = "../crates/edda-core" }
+edda-poh       = { path = "../crates/edda-poh" }
+edda-network   = { path = "../crates/edda-network" }
+edda-consensus = { path = "../crates/edda-consensus" }
+edda-wasm      = { path = "../crates/edda-wasm" }
+edda-rpc       = { path = "../crates/edda-rpc" }
+tokio          = { workspace = true }
+bincode        = { workspace = true }
+hex            = { workspace = true }
+serde          = { workspace = true }
+serde_json     = { workspace = true }
