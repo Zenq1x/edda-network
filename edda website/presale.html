@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDDA Presale — eddachain.com</title>
+  <meta name="description" content="Join the EDDA Network presale. 40,000,000 EDDA available at $0.01 each." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .presale-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 140px 24px 100px;
+    }
+    .presale-label {
+      font-size: 11px;
+      letter-spacing: .5px;
+      color: var(--sub);
+      margin-bottom: 16px;
+    }
+    .presale-title {
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1.06;
+      margin-bottom: 16px;
+    }
+    .presale-sub {
+      font-size: 16px;
+      color: var(--sub);
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .stat-box {
+      background: #000;
+      padding: 28px 24px;
+    }
+    .stat-box-num {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -.5px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .stat-box-label {
+      font-size: 11px;
+      color: var(--sub);
+      letter-spacing: .3px;
+    }
+    .pay-card {
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      background: #0a0a0a;
+      padding: 32px;
+      margin-bottom: 16px;
+    }
+    .pay-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .pay-coin {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .pay-badge {
+      font-size: 11px;
+      color: var(--sub);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 3px 10px;
+      border-radius: 980px;
+    }
+    .addr-box {
+      background: #000;
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .addr-val {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--sub);
+      word-break: break-all;
+      line-height: 1.6;
+    }
+    .copy-btn {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--text);
+      font-size: 11px;
+      padding: 6px 14px;
+      border-radius: 980px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: var(--fn);
+      transition: all .15s;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,.1); }
+    .copy-btn.copied { color: var(--green); border-color: var(--green); }
+    .pay-note {
+      font-size: 12px;
+      color: var(--sub);
+      line-height: 1.7;
+    }
+    .pay-note strong { color: rgba(255,255,255,.6); font-weight: 500; }
+    .info-list {
+      border-top: 1px solid rgba(255,255,255,.07);
+      margin-top: 40px;
+      padding-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+      font-size: 13px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-key { color: var(--sub); }
+    .info-val { color: var(--text); font-weight: 500; }
+    .info-val.green { color: var(--green); }
+    .presale-footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .presale-footer a { color: var(--sub); text-decoration: none; }
+    .presale-footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">EDDA</a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#network">Network</a>
+        <a href="/presale.html">Presale</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://wallet.eddachain.com" class="btn btn-ghost" target="_blank" rel="noopener">Wallet</a>
+        <a href="https://explorer.eddachain.com" class="btn btn-outline-white" target="_blank" rel="noopener">Explorer →</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="presale-wrap">
+
+    <div class="presale-label">EDDA PRESALE</div>
+    <h1 class="presale-title">Get EDDA<br/>early.</h1>
+    <p class="presale-sub">40,000,000 EDDA available at $0.01 each — 8% of the total supply. First come, first served.</p>
+
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-box-num">$0.01</div>
+        <div class="stat-box-label">Price per EDDA</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num">40M</div>
+        <div class="stat-box-label">EDDA available</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-box-num green">$400K</div>
+        <div class="stat-box-label">Hard cap</div>
+      </div>
+    </div>
+
+    <div class="pay-card">
+      <div class="pay-header">
+        <span class="pay-coin">Bitcoin (BTC)</span>
+        <span class="pay-badge">Accepted</span>
+      </div>
+      <div class="addr-box">
+        <span class="addr-val">3E4o6hP7SYx9RfuJDZ5skEjjLDG45EsfqT</span>
+        <button class="copy-btn" onclick="copyAddr(this, '3E4o6hP7SYx9RfuJDZ5skEjjLDG45EsfqT')">Copy</button>
+      </div>
+      <p class="pay-note">
+        Send BTC to the address above. <strong>Include your EDDA wallet address in the transaction memo</strong> so we can allocate your tokens. After the presale closes, EDDA will be distributed to all participants.
+      </p>
+    </div>
+
+    <div class="info-list">
+      <div class="info-row">
+        <span class="info-key">Total supply</span>
+        <span class="info-val">500,000,000 EDDA</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Presale allocation</span>
+        <span class="info-val">40,000,000 EDDA (8%)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Price</span>
+        <span class="info-val">$0.01 per EDDA</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Fee model</span>
+        <span class="info-val green">50% of all fees burned</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Hard cap</span>
+        <span class="info-val">500M — no inflation ever</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Network</span>
+        <span class="info-val">Live — explorer.eddachain.com</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Contact</span>
+        <span class="info-val">eddachain@gmail.com</span>
+      </div>
+    </div>
+
+    <div class="presale-footer">
+      <a href="/">← Back to eddachain.com</a><br/><br/>
+      Participate at your own risk. EDDA is a new network and presale tokens are allocated manually after close.
+    </div>
+
+  </main>
+
+  <script>
+    function copyAddr(btn, addr) {
+      navigator.clipboard.writeText(addr);
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    }
+  </script>
+
+</body>
+</html>
