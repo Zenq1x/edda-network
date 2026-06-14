@@ -8,177 +8,164 @@
   <link rel="stylesheet" href="styles.css" />
   <style>
     .presale-wrap {
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
-      padding: 140px 24px 100px;
+      padding: 120px 40px 100px;
     }
     .presale-label {
-      font-size: 11px;
-      letter-spacing: .5px;
-      color: var(--sub);
-      margin-bottom: 16px;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--sub); margin-bottom: 14px;
+      font-family: var(--fm);
     }
     .presale-title {
-      font-size: clamp(36px, 5vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
       color: var(--text);
-      line-height: 1.06;
-      margin-bottom: 16px;
+      line-height: 1.1;
+      margin-bottom: 14px;
     }
     .presale-sub {
-      font-size: 16px;
+      font-size: 13px;
       color: var(--sub);
-      line-height: 1.7;
-      margin-bottom: 52px;
+      line-height: 1.8;
+      margin-bottom: 40px;
     }
     .stats-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 32px;
+      gap: 0;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
     }
     .stat-box {
-      background: #000;
-      padding: 28px 24px;
+      background: var(--bg);
+      padding: 24px 20px;
+      border-right: 1px solid var(--border);
     }
+    .stat-box:last-child { border-right: none; }
     .stat-box-num {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -.5px;
-      color: var(--text);
-      margin-bottom: 6px;
+      font-size: 20px; font-weight: 500;
+      letter-spacing: -.3px; color: var(--text);
+      margin-bottom: 6px; font-family: var(--fm);
     }
     .stat-box-label {
-      font-size: 11px;
-      color: var(--sub);
-      letter-spacing: .3px;
+      font-size: 10px; color: var(--dim);
+      letter-spacing: .14em; text-transform: uppercase;
+      font-family: var(--fm);
     }
     .pay-card {
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 16px;
-      background: #0a0a0a;
-      padding: 32px;
-      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      background: var(--bg3);
+      padding: 24px;
     }
+    .pay-card:last-of-type { border-bottom: 1px solid var(--border); margin-bottom: 16px; }
     .pay-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .pay-coin {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 13px; font-weight: 500;
       color: var(--text);
     }
     .pay-badge {
-      font-size: 11px;
-      color: var(--sub);
-      border: 1px solid rgba(255,255,255,.08);
-      padding: 3px 10px;
-      border-radius: 980px;
+      font-size: 10px; color: var(--green);
+      border: 1px solid var(--green);
+      padding: 2px 10px; letter-spacing: .1em;
+      font-family: var(--fm);
     }
     .addr-box {
-      background: #000;
-      border: 1px solid rgba(255,255,255,.07);
-      border-radius: 10px;
-      padding: 14px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 12px;
     }
     .addr-val {
-      font-family: var(--mono);
-      font-size: 12px;
+      font-family: var(--fm);
+      font-size: 11px;
       color: var(--sub);
       word-break: break-all;
       line-height: 1.6;
+      font-weight: 300;
     }
     .copy-btn {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.1);
-      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--sub);
       font-size: 11px;
-      padding: 6px 14px;
-      border-radius: 980px;
+      padding: 5px 12px;
       cursor: pointer;
       white-space: nowrap;
       font-family: var(--fn);
       transition: all .15s;
       flex-shrink: 0;
     }
-    .copy-btn:hover { background: rgba(255,255,255,.1); }
+    .copy-btn:hover { color: var(--text); border-color: var(--sub); }
     .copy-btn.copied { color: var(--green); border-color: var(--green); }
     .pay-note {
       font-size: 12px;
       color: var(--sub);
-      line-height: 1.7;
+      line-height: 1.8;
     }
-    .pay-note strong { color: rgba(255,255,255,.6); font-weight: 500; }
+    .pay-note strong { color: var(--text); font-weight: 500; }
     .info-list {
-      border-top: 1px solid rgba(255,255,255,.07);
+      border-top: 1px solid var(--border);
       margin-top: 40px;
-      padding-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      padding-top: 0;
     }
     .info-row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,.05);
-      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
     }
     .info-row:last-child { border-bottom: none; }
-    .info-key { color: var(--sub); }
-    .info-val { color: var(--text); font-weight: 500; }
+    .info-key { color: var(--sub); font-family: var(--fm); font-size: 11px; }
+    .info-val { color: var(--text); font-weight: 400; font-family: var(--fm); font-size: 11px; }
     .info-val.green { color: var(--green); }
     .presale-footer {
-      text-align: center;
-      margin-top: 48px;
-      font-size: 12px;
-      color: var(--muted);
+      margin-top: 40px;
+      font-size: 11px;
+      color: var(--dim);
       line-height: 1.8;
+      font-family: var(--fm);
+      font-weight: 300;
     }
     .presale-footer a { color: var(--sub); text-decoration: none; }
     .presale-footer a:hover { color: var(--text); }
-    .progress-wrap {
-      margin-bottom: 32px;
-    }
+    .progress-wrap { margin-bottom: 24px; }
     .progress-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 10px;
-      font-size: 13px;
+      font-size: 12px;
     }
-    .progress-sold { color: var(--text); font-weight: 600; }
-    .progress-total { color: var(--sub); }
+    .progress-sold { color: var(--text); font-weight: 500; font-family: var(--fm); }
+    .progress-total { color: var(--sub); font-family: var(--fm); font-size: 11px; }
     .progress-bar-bg {
-      height: 3px;
-      background: rgba(255,255,255,.08);
-      border-radius: 3px;
-      overflow: hidden;
+      height: 1px;
+      background: var(--border);
     }
     .progress-bar-fill {
-      height: 100%;
-      background: #f5f5f7;
-      border-radius: 3px;
+      height: 1px;
+      background: var(--sub);
       transition: width .4s ease;
     }
     .progress-pct {
-      font-size: 11px;
-      color: var(--sub);
+      font-size: 10px;
+      color: var(--dim);
       margin-top: 8px;
+      font-family: var(--fm);
     }
   </style>
 </head>
