@@ -40,6 +40,7 @@ export default function Wallet() {
   const [importKey, setImportKey] = useState('');
   const [importErr, setImportErr] = useState('');
   const [showSetup, setShowSetup] = useState(false);
+  const [sendConfirm,   setConfirm]   = useState<{ to: string; amount: string } | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -90,17 +91,24 @@ export default function Wallet() {
     setCopied(true); setTimeout(() => setCopied(false), 1500);
   }
 
-  async function doSend() {
+  function doSend() {
     if (!wallet) return;
     setSendMsg(null);
     const lamports = BigInt(Math.round(parseFloat(amount) * 1_000_000_000));
     if (lamports <= 0n) { setSendMsg({ type: 'err', text: 'Enter an amount' }); return; }
     if (!/^[0-9a-f]{64}$/.test(toAddr.trim())) { setSendMsg({ type: 'err', text: 'Invalid address' }); return; }
     if (lamports + 5_000n > balance) { setSendMsg({ type: 'err', text: 'Insufficient balance' }); return; }
+    setConfirm({ to: toAddr.trim(), amount });
+  }
+
+  async function doSendConfirmed() {
+    if (!wallet || !sendConfirm) return;
+    setConfirm(null);
     setSending(true);
+    const lamports = BigInt(Math.round(parseFloat(sendConfirm.amount) * 1_000_000_000));
     try {
       const blockhash = await getRecentBlockhash();
-      const b64 = buildTransferTx(wallet.privateKey, toAddr.trim(), lamports, blockhash);
+      const b64 = buildTransferTx(wallet.privateKey, sendConfirm.to, lamports, blockhash);
       const sig = await sendTransaction(b64);
       setSendMsg({ type: 'ok', text: 'Sent', sig });
       setToAddr(''); setAmount('');
@@ -137,7 +145,7 @@ export default function Wallet() {
   }
 
   function deleteWallet() {
-    if (!confirm('Delete wallet? Back up your private key first.')) return;
+    if (!window.confirm('Delete wallet? Back up your private key first.')) return;
     localStorage.removeItem(STORAGE_KEY);
     setWallet(null); setBalance(0n); setTxHistory([]);
   }
@@ -148,8 +156,7 @@ export default function Wallet() {
       <>
         <div className="card">
           <div className="header">
-            <div className="logo"><span className="dot" />Edda</div>
-            <span className="net-badge">Testnet</span>
+            <div className="logo">Edda Wallet</div>
           </div>
           <div className="setup">
             <h2>Your Edda Wallet</h2>
@@ -177,13 +184,12 @@ export default function Wallet() {
       <div className="card">
         {/* Header */}
         <div className="header">
-          <div className="logo"><span className="dot" />Edda</div>
+          <div className="logo">Edda Wallet</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <span className="status-line">
               <span className={`status-dot ${online ? 'online' : 'offline'}`} />
               {online ? `Block ${blockH.toLocaleString()}` : 'Offline'}
             </span>
-            <span className="net-badge">Testnet</span>
           </div>
         </div>
 
@@ -333,16 +339,32 @@ export default function Wallet() {
               Export Key
             </button>
             <button className="btn btn-danger btn-sm" style={{ flex: 1 }} onClick={deleteWallet}>
-              Delete
+              Log out
             </button>
           </div>
         </div>
       </div>
 
       <div className="footer">
-        Edda Network · Testnet · eddachain.com<br />
+        Edda Network · eddachain.com<br />
         Keys stored locally only.
       </div>
+
+      {sendConfirm && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
+          <div style={{ background: '#111', border: '1px solid #2a2a2a', borderRadius: 16, padding: 28, maxWidth: 360, width: '90%' }}>
+            <div style={{ fontWeight: 600, fontSize: 16, marginBottom: 16 }}>Confirm transaction</div>
+            <div style={{ color: '#888', fontSize: 13, marginBottom: 8 }}>To</div>
+            <div style={{ fontFamily: 'monospace', fontSize: 12, wordBreak: 'break-all', marginBottom: 16 }}>{sendConfirm.to}</div>
+            <div style={{ color: '#888', fontSize: 13, marginBottom: 4 }}>Amount</div>
+            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 24 }}>{sendConfirm.amount} <span style={{ color: '#888', fontSize: 14 }}>EDDA</span></div>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button className="btn btn-secondary btn-sm" style={{ flex: 1 }} onClick={() => setConfirm(null)}>Cancel</button>
+              <button className="btn btn-primary btn-sm" style={{ flex: 1 }} onClick={doSendConfirmed}>Confirm</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
